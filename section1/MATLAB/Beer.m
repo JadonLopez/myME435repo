@@ -12,19 +12,18 @@ classdef Beer < handle
             obj.SizeOz = sizeOz;
         end
         
-        function drink(obj)
+        function obj = drink(obj)
             if obj.IsFull
-                fprintf("Drank the beer\n")
+                fprintf("Drank the beer\n");
                 obj.IsFull = false;
             else
-                fprintf("Already empty\n")
+                fprintf("Already empty\n");
             end
         end
-        
-        function refill(obj)
+
+        function obj = refill(obj)
             obj.IsFull = true;
         end
-
     end
 end
 
