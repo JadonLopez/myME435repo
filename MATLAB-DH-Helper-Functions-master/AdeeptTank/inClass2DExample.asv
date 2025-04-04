@@ -1,6 +1,0 @@
-clear; clc
-ptAonLink1 = [0;0;2;1];
-ptBonLink2 = [1;0;1;1];
-
-expectedAonLink0 = [2;0;5;1];
-expectedBonLink1 = [6'0;4;1];
