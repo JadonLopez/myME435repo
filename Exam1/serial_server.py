@@ -36,7 +36,7 @@ def api_command3(command,command2,command3):
     with serial_lock:
         exam = Exam()
         exam.connect("/dev/ttyACM0")
-        finalCommand = str(command) + " " + str(command2) + str(command3)
+        finalCommand = str(command) + " " + str(command2) + " " + str(command3)
         resp = exam.send_command(finalCommand)
         exam.disconnect()
         return resp
