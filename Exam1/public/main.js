@@ -11,16 +11,16 @@ function main() {
     console.log("Ready!");
 
     document.querySelector("#on").onclick = () => {
-        sendCommand("LED On");
+        sendCommand("led on");
     };
     document.querySelector("#off").onclick = () => {
-        sendCommand("LED Off");
+        sendCommand("led off");
     };
 
     document.querySelector("#flash").onclick = () => {
         let number = document.querySelector("#flashNum").value;
         let duration = document.querySelector("#duration").value;
-        sendCommand(`Flash ${number} ${duration}`);
+        sendCommand(`flash ${number} ${duration}`);
     };  
 }
 
