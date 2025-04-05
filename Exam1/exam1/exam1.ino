@@ -9,11 +9,11 @@ void setup() {
 
 void loop() {
   if (stringComplete) {
-    if (inputString.equals("LED On")) {
+    if (inputString.equals("led on")) {
     digitalWrite(13,1);
-    } else if (inputString.equals("LED Off")) {
+    } else if (inputString.equals("led off")) {
       digitalWrite(13,0);
-    } else if (inputString.startsWith("Flash")) {
+    } else if (inputString.startsWith("flash")) {
       String params = inputString.substring(6);
       int spaceIndex = params.indexOf(' ');
       if (spaceIndex > 0) {
