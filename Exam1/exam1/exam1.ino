@@ -17,7 +17,7 @@ void loop() {
       Serial.println("LED Off");
     } else if (inputString.startsWith("flash ")) {
       String params = inputString.substring(6);
-      int spaceIndex = params.indexOf(' ');
+      int spaceIndex = params.indexOf(" ");
       if (spaceIndex > 0) {
         String numberStr = params.substring(0, spaceIndex);
         String durationStr = params.substring(spaceIndex + 1);
