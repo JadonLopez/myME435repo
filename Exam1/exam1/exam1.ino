@@ -11,8 +11,10 @@ void loop() {
   if (stringComplete) {
     if (inputString.equals("led on")) {
     digitalWrite(13,1);
+    Serial.println("LED On");
     } else if (inputString.equals("led off")) {
       digitalWrite(13,0);
+      Serial.println("LED Off");
     } else if (inputString.startsWith("flash")) {
       String params = inputString.substring(6);
       int spaceIndex = params.indexOf(' ');
@@ -22,6 +24,7 @@ void loop() {
 
         int number = numberStr.toInt();
         int duration = durationStr.toInt();
+        Serial.println(sprintf("Flashes = %d PeriodMs = %d",number,duration));
         for (int i = 0; i < number; i++) {
           digitalWrite(13,0);
           delay(duration/2);
@@ -36,7 +39,6 @@ void loop() {
     }
     inputString = "";
     stringComplete = false;
-    Serial.println("Done!");
   }
 }
 
