@@ -31,7 +31,7 @@ def api_command2(command,command2):
         exam.disconnect()
         return resp
     
-@app.route("/api/<command>/<command2>/<command3>/")
+@app.route("/api/<command>/<command2>/<command3>")
 def api_command3(command,command2,command3):
     with serial_lock:
         exam = Exam()
