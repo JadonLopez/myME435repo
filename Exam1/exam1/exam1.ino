@@ -15,7 +15,7 @@ void loop() {
     } else if (inputString.equals("led off")) {
       digitalWrite(13,0);
       Serial.println("LED Off");
-    } else if (inputString.startsWith("flash")) {
+    } else if (inputString.startsWith("flash ")) {
       String params = inputString.substring(6);
       int spaceIndex = params.indexOf(' ');
       if (spaceIndex > 0) {
