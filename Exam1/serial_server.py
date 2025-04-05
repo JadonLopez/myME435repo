@@ -13,14 +13,15 @@ def naked_domain_redirect():
     return flask.redirect("index.html")
 
 
-@app.route("/api/<command>")
-def api_command(command):
+@app.route("/api/<command>/<command2>")
+def api_command(command,command2):
     with serial_lock:
         exam = Exam()
         exam.connect("/dev/ttyACM0")
-        resp = exam.send_command(command)
+        finalCommand = str(command) + " " + str(command2)
+        resp = exam.send_command(finalCommand)
         exam.disconnect()
         return resp
 
 
-app.run(host="0.0.0.0", port=8080, debug=True)
+app.run(host="0.0.0.0", port=5000, debug=True)
