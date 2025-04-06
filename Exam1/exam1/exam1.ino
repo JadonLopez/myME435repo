@@ -27,7 +27,6 @@ void loop() {
         char toPrint[50];
         sprintf(toPrint,"Flashes = %d PeriodMs = %d",number,duration);
         inputString = String(toPrint);
-        Serial.println(inputString);
         for (int i = 0; i < number; i++) {
           digitalWrite(13,0);
           delay(duration/2);
@@ -35,6 +34,7 @@ void loop() {
           delay(duration/2);
           digitalWrite(13,0);
         }
+        Serial.println(inputString);
       }
     } else {
       Serial.print("Unknown command --> ");
