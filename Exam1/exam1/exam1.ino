@@ -24,8 +24,10 @@ void loop() {
 
         int number = numberStr.toInt();
         int duration = durationStr.toInt();
-        sprintf(toPrint,"Flashes = %d PeriodMs = %d",number,duration)
-        Serial.println(toPrint);
+        char toPrint[50];
+        sprintf(toPrint,"Flashes = %d PeriodMs = %d",number,duration);
+        inputString = String(toPrint);
+        Serial.println(inputString);
         for (int i = 0; i < number; i++) {
           digitalWrite(13,0);
           delay(duration/2);
