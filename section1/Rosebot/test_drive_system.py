@@ -35,7 +35,7 @@ def run_test_drive_system():
     #        RE-commenting out the previous test to reduce the testing.
     # -------------------------------------------------------------------------
 
-    run_test_go_stop(robot)
+    # run_test_go_stop(robot)
     # run_test_go_straight_for_seconds(robot)
     # run_test_go_straight_for_inches(robot)
     # run_test_spin_in_place_for_seconds(robot)
@@ -95,9 +95,10 @@ def run_test_go_straight_for_seconds(robot):
         input("Press the ENTER key when ready for the robot to start moving.")
 
         # -------------------------------------------------------------------------
-        # TODO: 4. Call the  go_straight_for_seconds  method of the   drive_system
+        #  Call the  go_straight_for_seconds  method of the   drive_system
         #  of the robot, sending it the input  seconds  and  speed.
         # -------------------------------------------------------------------------
+        robot.drive_system.go_straight_for_seconds(seconds,speed)
 
 
 def run_test_go_straight_for_inches(robot):
@@ -122,6 +123,7 @@ def run_test_go_straight_for_inches(robot):
         #  of the robot, sending it the input  inches  and  speed.
         #  (The go_straight_for_inches method uses the same speed for both wheels.)
         # -------------------------------------------------------------------------
+        robot.drive_system.go_straight_for_inches(inches,speed)
 
 
 def run_test_spin_in_place_for_seconds(robot):
@@ -142,11 +144,11 @@ def run_test_spin_in_place_for_seconds(robot):
         input("Press the ENTER key when ready for the robot to start moving.")
 
         # -------------------------------------------------------------------------
-        # TODO: 6. Call the  spin_in_place_for_seconds  method of the   drive_system
+        #  Call the  spin_in_place_for_seconds  method of the   drive_system
         #  of the robot, sending it the input  seconds  and  speed.
         #  (The go_straight_for_inches method uses the same speed for both wheels.)
         # -------------------------------------------------------------------------
-
+        robot.drive_system.spin_in_place_for_seconds(seconds,speed)
 
 def run_test_spin_in_place_for_degrees(robot):
     """
