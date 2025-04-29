@@ -12,14 +12,14 @@ app.jointAngles = [0 0 0]; % Start at the zero angle position.
 clc
 
 % Prepare the axes_arm properties
-app.axes_arm.View = [90 -50];
-app.axes_arm.Visible = 'off';
+app.axes_arm.View = [90*25.4 -50*25.4];
+app.axes_arm.Visible = 'on';
 
 % Once you are in Matlab App Designer you can try these axes_arm properties too.
 % These properties keep the Axes from automatically resizing (optional)
-% app.axes_arm.XLim = [-160 250];
-% app.axes_arm.YLim = [-250 250];
-% app.axes_arm.ZLim = [-22 22];
+app.axes_arm.XLim = [-160 250];
+app.axes_arm.YLim = [-250 250];
+app.axes_arm.ZLim = [-350 350];
 
 % Create vertices for all the patches
 makeStlLink("Link0.stl", app.axes_arm, [.2 .2 .2]);  % Doesn't move. No need to save a handle to it.
@@ -45,8 +45,8 @@ function updateArm(app)
 
 % TODO: Create the A homogeneous transformation matrices for the given jointAngles.
 A1 = create_A_matrix(0,0,0,app.jointAngles(1));
-A2 = create_A_matrix(250,0,0,app.jointAngles(2));
-A3 = create_A_matrix(100,0,0,app.jointAngles(3));
+A2 = create_A_matrix(0,250,0,app.jointAngles(2));
+A3 = create_A_matrix(0,100,0,app.jointAngles(3));
 
 % TODO: Use the current A matricies to form the T0_n matricies.
 T0_1 = A1;
