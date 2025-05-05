@@ -3,7 +3,7 @@ function initializeDhAxes
 % Begin: Setup for this stand alone version that will NOT go into the GUI.
 close all
 app.axes_arm = axes;  % Create a new axes and save a handle to it.
-app.jointAngles = [0 0 0]; % Start at the zero angle position.
+app.jointAngles = [0 0 0 0 0]; % Start at the zero angle position.
 %  End : Setup for this stand alone version that will NOT go into the GUI.
 
 
@@ -12,14 +12,14 @@ app.jointAngles = [0 0 0]; % Start at the zero angle position.
 clc
 
 % Prepare the axes_arm properties
-app.axes_arm.View = [90*25.4 -50*25.4];
+app.axes_arm.View = [90 -50];
 app.axes_arm.Visible = 'on';
 
 % Once you are in Matlab App Designer you can try these axes_arm properties too.
 % These properties keep the Axes from automatically resizing (optional)
-app.axes_arm.XLim = [-160 250];
-app.axes_arm.YLim = [-250 250];
-app.axes_arm.ZLim = [-350 350];
+% app.axes_arm.XLim = [-160 250];
+% app.axes_arm.YLim = [-250 250];
+% app.axes_arm.ZLim = [-350 350];
 
 % Create vertices for all the patches
 makeStlLink("Link0.stl", app.axes_arm, [.2 .2 .2]);  % Doesn't move. No need to save a handle to it.
@@ -35,6 +35,10 @@ app.link2Vertices(4,:) = ones(1, size(app.link2Vertices,2));
 app.link3Patch = makeStlLink("Link3.stl", app.axes_arm, [181/255 24/255 35/255]);
 app.link3Vertices = get(app.link3Patch, 'Vertices')';
 app.link3Vertices(4,:) = ones(1, size(app.link3Vertices,2));
+
+app.link5Patch = makeStlLink("Link5.stl", app.axes_arm, [181/255 24/255 35/255]);
+app.link5Vertices = get(app.link5Patch, 'Vertices')';
+app.link5Vertices(4,:) = ones(1, size(app.link5Vertices,2));
 % End: Code that can go into your GUI's opening function.
 
 updateArm(app);
@@ -44,23 +48,28 @@ end
 function updateArm(app)
 
 % TODO: Create the A homogeneous transformation matrices for the given jointAngles.
-A1 = create_A_matrix(0,0,0,app.jointAngles(1));
-A2 = create_A_matrix(0,250,0,app.jointAngles(2));
-A3 = create_A_matrix(0,100,0,app.jointAngles(3));
+A1 = create_A_matrix(0,45,90,app.jointAngles(1));
+A2 = create_A_matrix(40,0,0,app.jointAngles(2));
+A3 = create_A_matrix(0,0,90,app.jointAngles(3));
+A4 = create_A_matrix(0,0,0,0);
+A5 = create_A_matrix(0,35 + app.jointAngles(4),0,app.jointAngles(5));
 
 % TODO: Use the current A matricies to form the T0_n matricies.
 T0_1 = A1;
 T0_2 = A1 * A2;
 T0_3 = A1 * A2 * A3;
+T0_5 = A1 * A2 * A3 * A4 * A5;
 
 % TODO: Use the current T matricies to transform the original patch vertices
 link1VerticesWRTground = T0_1 * app.link1Vertices;
 link2VerticesWRTground = T0_2 * app.link2Vertices;
 link3VerticesWRTground = T0_3 * app.link3Vertices;
+link5VerticesWRTground = T0_5 * app.link5Vertices;
 
 % TODO: Update the patches with the newly transformed vertices
 set(app.link1Patch,'Vertices', link1VerticesWRTground(1:3,:)');
 set(app.link2Patch,'Vertices', link2VerticesWRTground(1:3,:)');
 set(app.link3Patch,'Vertices', link3VerticesWRTground(1:3,:)');
+set(app.link5Patch,'Vertices', link5VerticesWRTground(1:3,:)');
 
 end
