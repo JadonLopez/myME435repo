@@ -15,7 +15,7 @@ class App:
         self.mqtt_client.callback = self.mqtt_callback
         self.mqtt_client.connect(subscription_topic_name="me435/lopezjj/#",
                                  publish_topic_name="me435/lopezjj/to_computer",
-                                 use_off_campus_broker=False)
+                                 use_off_campus_broker=True)
         
     def button_23_pressed(self):
         self.mqtt_client.send_message("button")
@@ -63,10 +63,10 @@ def main():
     try:
         while True:
             time.sleep(0.1)
-            app.mqtt_client.send_message("leds", [1,0,1])    
-            time.sleep(2)
-            app.mqtt_client.send_message("leds", [0,1,0])    
-            time.sleep(2)
+            # app.mqtt_client.send_message("leds", [1,0,1])    
+            # time.sleep(2)
+            # app.mqtt_client.send_message("leds", [0,1,0])    
+            # time.sleep(2)
             
     except KeyboardInterrupt:
         print("Exiting...")
