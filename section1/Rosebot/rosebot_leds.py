@@ -5,6 +5,9 @@ class CarLeds:
 
     def __init__(self):
         self.neopixel_strip = Freenove_SPI_LedPixel(count=8, bright=128)
+        self.neopixel_strip.set_all_led_color_data(0, 0, 0)
+        self.neopixel_strip.show()
+        time.sleep(0.05)  # Give a short delay after init
 
     def set_all_leds(self, red, green, blue):
         self.neopixel_strip.set_all_led_color_data(red, green, blue)
@@ -16,6 +19,7 @@ class CarLeds:
 
 if __name__ == "__main__":
     car_leds = CarLeds()
+    time.sleep(5)
     car_leds.set_all_leds(255,0,0)
     time.sleep(1)
     car_leds.set_led(1, 0, 255, 0)
